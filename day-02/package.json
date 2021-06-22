@@ -1,0 +1,29 @@
+{
+  "name": "cs572-day-02",
+  "version": "1.0.0",
+  "description": "Solution for cs572 day-02 assignment",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ykal/cs572.git"
+  },
+  "keywords": [
+    "MEAN"
+  ],
+  "author": "Kaleab Y. Abebe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ykal/cs572/issues"
+  },
+  "homepage": "https://github.com/ykal/cs572#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
