@@ -1,6 +1,16 @@
-const computations = require("./computations");
+const { spawn } = require("child_process");
 
-console.log("1: Computing fib(25) ...");
-console.log(computations.fib(25));
-console.log("2: Computing fib(-17) ...");
-console.log(computations.fib(-17));
+console.log(`Start`);
+
+spawn("node", ["day-01/computations", 25], {
+  stdio: 'inherit'
+});
+
+console.log("Some process");
+
+spawn("node", ["day-01/computations", -17], {
+  stdio: 'inherit'
+});
+
+console.log("End")
+
