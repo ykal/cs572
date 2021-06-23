@@ -1,7 +1,7 @@
 {
-  "name": "cs572-day-02",
+  "name": "cs572-day-03",
   "version": "1.0.0",
-  "description": "Solution for cs572 day-02 assignment",
+  "description": "Solution for cs572 day-03 assignment",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
