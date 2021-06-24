@@ -21,7 +21,22 @@ const getAll = (req, res) => {
   });
 };
 
+const getById = (req, res) => {
+  const id = req && req.params && req.params.id || null;
+  if (!id)
+    res.status(400).send({ error: "Invalid id param" });
+
+  Game.findById(id, (err, game) => {
+    if (err)
+      res.status(500).send({ error: err });
+
+    if (game) res.status(200).send(game);
+    else res.status(404).send({ error: `Game with id of '${id}' not found.` })
+  });
+}
+
 module.exports = {
-  getAll
+  getAll,
+  getById
 };
 
