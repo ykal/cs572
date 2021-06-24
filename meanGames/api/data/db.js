@@ -1,35 +1,32 @@
 "use-strict";
 
-const MongoClient = require("mongodb").MongoClient;
+const mongoose = require('mongoose');
+
 const DB_NAME = "meanGames";
 const DB_URL = `mongodb://localhost:27017/${DB_NAME}`;
-let _connection = null;
 
-const open = function () {
-  MongoClient.connect(DB_URL, { useUnifiedTopology: true }, function (err, client) {
-    if (err) {
-      console.log("DB connection failed");
-      return;
-    }
-    _connection = client.db(DB_NAME);
-    console.log("DB connection open", _connection);
-  });
-};
-
-const getCollection = (collectionName) => {
-  if (_connection) {
-    return _connection.collection(collectionName);
-  }
-  return null;
+const onConnected = () => console.log("Connected to DB.");
+const onDisconnected = () => console.log("Disconnected to DB.");
+const onError = (err) => console.log(err);
+const closeConnection = (origin, cb) => {
+  console.log(`DB connection closed ${origin}`);
+  cb && cb();
 }
 
+mongoose.connect(DB_URL, { useUnifiedTopology: true });
 
-const get = function () {
-  return _connection;
-};
+// connection event listener
+mongoose.connection.on("connected", onConnected);
+mongoose.connection.on("disconected", onDisconnected);
+mongoose.connection.on("error", onError);
 
-module.exports = {
-  open: open,
-  get: get,
-  getCollection
-};
+// process event listener
+process.on("SIGINT", () => {
+  closeConnection("SIGINT", () => process.exit(0));
+});
+process.on("SIGTERM", () => {
+  closeConnection("SIGTERM", () => process.exit(0));
+});
+process.once("SIGUSR2", () => {
+  closeConnection("SIGUSR2", () => process.kill(process.pid, "SIGUSR2"));
+});
