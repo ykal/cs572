@@ -1,9 +1,9 @@
 "use strict";
 
 const express = require("express");
+require("./api/data/db").open();
 const path = require("path");
 const { apiRouter } = require("./api");
-
 const PORT = 5050;
 
 const app = express();
