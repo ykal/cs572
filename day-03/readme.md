@@ -1,13 +1,9 @@
-### Day 02 Lab Assignment
+### Day 03 Lab Assignment
 
 #### Step by step process
 
-* setup `express` app and run server on port `5050`
-  
-* create static `html` for MEAN Games application landing page including `js`, `css` and `image` file. 
+* installed `mongodb` and open connection with `meanGames` database 
 
-* serve the static files
-
-* implement endpoint that returns the result of multiplying two numbers provided by the user
+* implement endpoint that returns games from the database
   * create a `controller` and `route` and implement the logic and routing to these separate places
-  * `/api/computation/multiply/7.5?secondNum=10.9` will return a json data `{ "firstNum": 7.5, "secondNum": 10.9, "result": 81.75 }`
+  * `[GET]` `/api/games/limit?4` will return `4 - 8` games depending on the limit query param 
