@@ -1,6 +1,7 @@
 "use-strict";
 
 const { Game } = require("../models");
+const game = require("../models/game");
 
 const MAX_DISTANCE = 100000;
 const MIN_DISTANCE = 0;
@@ -46,8 +47,24 @@ const getById = (req, res) => {
   });
 }
 
+const createGame = (req, res) => {
+  const { title, rate, price, players } = req.body || {};
+  Game.create({
+    title,
+    rate: parseInt(rate),
+    price: parseFloat(price),
+    players: parseInt(players)
+  }, (err, game) => {
+    if (err)
+      res.status(500).send({ error: error });
+    else
+      res.status(201).send(game);
+  });
+}
+
 module.exports = {
   getAll,
-  getById
+  getById,
+  createGame
 };
 
