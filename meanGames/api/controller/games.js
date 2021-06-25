@@ -56,15 +56,42 @@ const createGame = (req, res) => {
     players: parseInt(players)
   }, (err, game) => {
     if (err)
-      res.status(500).send({ error: error });
+      res.status(500).send({ error: err });
     else
       res.status(201).send(game);
+  });
+}
+
+const updateGame = (game, updatedData, cb) => {
+  game.title = updatedData.title || game.title;
+  game.rate = parseInt(updatedData.rate) || game.rate;
+  game.price = parseFloat(updatedData.price) || game.price;
+  game.players = parseInt(updatedData.players) || game.players;
+
+  game.save((err, game) => cb(err, game));
+}
+
+const patchGame = (req, res) => {
+  const id = req.params.id;
+  const { title, rate, price, players } = req.body;
+  Game.findById(id, (err, game) => {
+    if (err)
+      res.status(500).send({ error: err });
+    else {
+      updateGame(game, { title, rate, price, players }, (updateErr, updatedGame) => {
+        if (err)
+          res.status(500).send({ error: updateErr });
+        else
+          res.status(200).send(updatedGame);
+      });
+    }
   });
 }
 
 module.exports = {
   getAll,
   getById,
-  createGame
+  createGame,
+  patchGame
 };
 
