@@ -1,6 +1,9 @@
 "use-strict";
 
-const { Game } = require("../models")
+const { Game } = require("../models");
+
+const MAX_DISTANCE = 100000;
+const MIN_DISTANCE = 0;
 
 const getLimit = (limitParam) => {
   if (limitParam === null)
@@ -13,8 +16,24 @@ const getLimit = (limitParam) => {
 const getAll = (req, res) => {
   let count = req && req.query && parseInt(req.query.count) || 5;
   let offset = req && req.query && parseInt(req.query.offset) || 0;
+  let lat = req && req.query && parseFloat(req.query.lat) || null;
+  let lng = req && req.query && parseFloat(req.query.lng) || null;
+  let query = {};
 
-  Game.find().skip(offset).limit(count).exec((err, games) => {
+  if (lat && lng) {
+    query["publisher.location"] = {
+      $near: {
+        $geometry: {
+          type: "Point",
+          coordinates: [lng, lat]
+        },
+        $maxDistance: MAX_DISTANCE,
+        $minDistance: MIN_DISTANCE
+      }
+    }
+  }
+
+  Game.find(query).skip(offset).limit(count).exec((err, games) => {
     if (err)
       res.status(500).send({ error: err });
     res.status(200).json(games);
