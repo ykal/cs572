@@ -88,10 +88,33 @@ const patchGame = (req, res) => {
   });
 }
 
+const putGame = (req, res) => {
+  const id = req.params.id;
+  const updatedGame = req.body;
+
+  if (id != updatedGame.id)
+    res.status(400).send({ error: "Game id cannot be changed." });
+  else {
+    Game.findById(id)
+      .exec()
+      .then(game => {
+        game.overwrite(updatedGame);
+        return game.save();
+      })
+      .then(savedGame => {
+        res.status(200).send(savedGame);
+      })
+      .catch(err => {
+        res.status(500).send({ error: err });
+      });
+  }
+}
+
 module.exports = {
   getAll,
   getById,
   createGame,
-  patchGame
+  patchGame,
+  putGame
 };
 
