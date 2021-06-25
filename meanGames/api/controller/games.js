@@ -110,11 +110,23 @@ const putGame = (req, res) => {
   }
 }
 
+const deleteGame = (req, res) => {
+  const id = req.params.id;
+  Game.findByIdAndDelete(id).exec()
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch(err => {
+      res.status(500).send({ error: err });
+    });
+}
+
 module.exports = {
   getAll,
   getById,
   createGame,
   patchGame,
-  putGame
+  putGame,
+  deleteGame
 };
 

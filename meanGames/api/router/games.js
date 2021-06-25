@@ -9,5 +9,6 @@ gamesRouter.post("/", gamesController.createGame);
 gamesRouter.get("/:id", gamesController.getById);
 gamesRouter.patch("/:id", gamesController.patchGame);
 gamesRouter.put("/:id", gamesController.putGame);
+gamesRouter.delete("/:id", gamesController.deleteGame);
 
 module.exports = gamesRouter;
