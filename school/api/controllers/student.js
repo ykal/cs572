@@ -27,7 +27,22 @@ const getById = (req, res) => {
   });
 }
 
+const addStudent = (req, res) => {
+  const { name, gpa } = req.body || {};
+  Student.create({
+    name,
+    gpa: parseInt(gpa)
+  }, (err, student) => {
+    if (err)
+      res.status(500).send({ error: err });
+    else
+      res.status(201).send(student);
+  });
+}
+
+
 module.exports = {
   getAll,
-  getById
+  getById,
+  addStudent
 };
