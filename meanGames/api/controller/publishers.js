@@ -20,6 +20,23 @@ const addGamePublisher = (req, res) => {
     });
 }
 
+const deleteGamePublisher = (req, res) => {
+  const { id } = req.params;
+  Game.findById(id)
+    .exec()
+    .then(game => {
+      game.publisher = undefined;
+      return game.save();
+    })
+    .then(() => {
+      res.status(204).send();
+    })
+    .catch(err => {
+      res.status(500).send({ error: err });
+    });
+}
+
 module.exports = {
-  addGamePublisher
+  addGamePublisher,
+  deleteGamePublisher
 };
