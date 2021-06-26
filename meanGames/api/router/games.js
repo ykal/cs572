@@ -15,6 +15,7 @@ gamesRouter.post("/:id/publisher", publishersController.addGamePublisher);
 gamesRouter.delete("/:id/publisher", publishersController.deleteGamePublisher);
 gamesRouter.patch("/:id/publisher", publishersController.patchGamePublisher);
 
+gamesRouter.get("/:id/reviews", reviewsController.getReviews);
 gamesRouter.post("/:id/reviews", reviewsController.addReview);
 
 module.exports = gamesRouter;

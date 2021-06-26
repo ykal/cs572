@@ -14,7 +14,6 @@ const addReview = (req, res) => {
       return game.save();
     })
     .then(savedGame => {
-      console.log(savedGame);
       res.status(201).send(savedGame.reviews.id(_id));
     })
     .catch(err => {
@@ -22,6 +21,20 @@ const addReview = (req, res) => {
     });
 };
 
+const getReviews = (req, res) => {
+  const { id } = req.params;
+  Game.findById(id)
+    .select("reviews")
+    .exec()
+    .then(game => {
+      res.status(200).send(game.reviews);
+    })
+    .catch(err => {
+      res.status(500).send({ error: err });
+    });
+}
+
 module.exports = {
-  addReview
+  addReview,
+  getReviews
 };
