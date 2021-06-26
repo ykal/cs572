@@ -7,6 +7,7 @@ const router = Router();
 router.get("/", studentController.getAll);
 router.post("/", studentController.addStudent);
 router.get("/:id", studentController.getById);
+router.put("/:id", studentController.fullUpdateStudent);
 router.get("/:id/courses", courseController.getStudentCourses);
 router.get("/:id/courses/:courseId", courseController.getStudentCourseById);
 

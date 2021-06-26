@@ -40,9 +40,38 @@ const addStudent = (req, res) => {
   });
 }
 
+const updateStudent = (student, res) => {
+  student.save()
+    .then(student => {
+      res.status(204).send()
+    })
+    .catch(err => {
+      res.status(500).send({ error: err });
+    });
+}
+
+const fullUpdateStudent = (req, res) => {
+  const id = req && req.params && req.params.id || null;
+  const { name, gpa } = req.body || {};
+  if (!id)
+    res.status(400).send({ error: "Invalid id param" });
+
+  Student.findById(id, (err, student) => {
+    if (err)
+      res.status(500).send({ error: err });
+
+    if (student) {
+      student.name = name || student.name;
+      student.gpa = parseInt(gpa) || student.gpa;
+      updateStudent(student, res);
+    }
+    else res.status(404).send({ error: `Student with id of '${id}' not found.` })
+  });
+}
 
 module.exports = {
   getAll,
   getById,
-  addStudent
+  addStudent,
+  fullUpdateStudent
 };
