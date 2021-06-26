@@ -1,7 +1,7 @@
 "use-strict";
 
 const { Router } = require("express");
-const { gamesController, publishersController } = require("../controller")
+const { gamesController, publishersController, reviewsController } = require("../controller")
 const gamesRouter = Router();
 
 gamesRouter.get("/", gamesController.getAll);
@@ -14,5 +14,7 @@ gamesRouter.delete("/:id", gamesController.deleteGame);
 gamesRouter.post("/:id/publisher", publishersController.addGamePublisher);
 gamesRouter.delete("/:id/publisher", publishersController.deleteGamePublisher);
 gamesRouter.patch("/:id/publisher", publishersController.patchGamePublisher);
+
+gamesRouter.post("/:id/reviews", reviewsController.addReview);
 
 module.exports = gamesRouter;

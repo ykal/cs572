@@ -2,6 +2,21 @@
 
 const { Schema, model } = require('mongoose');
 
+const reviewSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  review: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    required: true
+  }
+});
+
 const publisherSchema = new Schema({
   name: {
     type: String,
@@ -43,7 +58,8 @@ const gameSchema = new Schema({
     max: 5,
     default: 1
   },
-  publisher: publisherSchema
+  publisher: publisherSchema,
+  reviews: [reviewSchema]
 });
 
 module.exports = model("Game", gameSchema);
