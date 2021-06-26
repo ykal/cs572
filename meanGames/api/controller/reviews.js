@@ -86,14 +86,40 @@ const deleteReview = (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).send({ error: err, from: 'main' });
+      res.status(500).send({ error: err });
     });
 }
+
+const updateReview = (req, res) => {
+  const { id, reviewId } = req.params;
+  const { name, review } = req.body;
+  Game.findById(id)
+    .exec()
+    .then(game => {
+      if (!game)
+        res.status(404).send({ error: `Can not find game with id ${id}` });
+      else {
+        const _review = game.reviews.id(reviewId);
+
+        if (_review) {
+          const otherReviews = game.reviews = game.reviews.filter(item => item._id != _review._id);
+          game.reviews = [...otherReviews, { name, review, _id: review._id, date: new Date() }];
+          updateGame(game, res);
+        }
+        else
+          res.status(404).send({ error: `Can not find review with id ${reviewId}` });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({ error: err, from: 'main' });
+    });
+};
 
 
 module.exports = {
   addReview,
   getReviews,
   getReview,
-  deleteReview
+  deleteReview,
+  updateReview
 };

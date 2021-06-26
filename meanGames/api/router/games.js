@@ -19,5 +19,6 @@ gamesRouter.get("/:id/reviews", reviewsController.getReviews);
 gamesRouter.post("/:id/reviews", reviewsController.addReview);
 gamesRouter.get("/:id/reviews/:reviewId", reviewsController.getReview);
 gamesRouter.delete("/:id/reviews/:reviewId", reviewsController.deleteReview);
+gamesRouter.put("/:id/reviews/:reviewId", reviewsController.updateReview);
 
 module.exports = gamesRouter;
