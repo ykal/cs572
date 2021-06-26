@@ -11,6 +11,6 @@ gamesRouter.patch("/:id", gamesController.patchGame);
 gamesRouter.put("/:id", gamesController.putGame);
 gamesRouter.delete("/:id", gamesController.deleteGame);
 
-gamesRouter.post("/:id/publishers", publishersController.addGamePublisher);
+gamesRouter.post("/:id/publisher", publishersController.addGamePublisher);
 
 module.exports = gamesRouter;
