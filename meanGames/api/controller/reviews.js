@@ -34,7 +34,31 @@ const getReviews = (req, res) => {
     });
 }
 
+const getReview = (req, res) => {
+  const { id, reviewId } = req.params;
+  Game.findById(id)
+    .select("reviews")
+    .exec()
+    .then(game => {
+      if (!game)
+        res.status(404).send({ error: `Can not find game with id ${id}` });
+      else {
+        const review = game.reviews.id(reviewId);
+        if (review)
+          res.status(200).send(review);
+        else
+          res.status(404).send({ error: `Can not find review with id ${reviewId}` });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({ error: err });
+    });
+}
+
+
+
 module.exports = {
   addReview,
-  getReviews
+  getReviews,
+  getReview
 };

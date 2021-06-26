@@ -17,5 +17,6 @@ gamesRouter.patch("/:id/publisher", publishersController.patchGamePublisher);
 
 gamesRouter.get("/:id/reviews", reviewsController.getReviews);
 gamesRouter.post("/:id/reviews", reviewsController.addReview);
+gamesRouter.get("/:id/reviews/:reviewId", reviewsController.getReview);
 
 module.exports = gamesRouter;
