@@ -8,7 +8,7 @@ const publisherSchema = new Schema({
     required: true
   },
   country: {
-    type: Number,
+    type: String,
     required: true
   },
   established: {
@@ -16,6 +16,7 @@ const publisherSchema = new Schema({
     required: false
   },
   location: {
+    type: Object,
     address: String,
     coordinates: {
       type: [Number],
