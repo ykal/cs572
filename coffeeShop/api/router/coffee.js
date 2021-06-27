@@ -14,5 +14,6 @@ router.delete("/:coffeeId", coffeeController.removeById);
 
 router.post("/:coffeeId/sizes", sizeController.add);
 router.get("/:coffeeId/sizes", sizeController.findAll);
+router.delete("/:coffeeId/sizes/:sizeId", sizeController.removeById);
 
 module.exports = router;
