@@ -7,7 +7,22 @@ const sizeSchema = new Schema({
     type: String,
     required: true
   }
-})
+});
+
+const reviewSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  review: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    required: true
+  }
+});
 
 const coffeeShema = new Schema({
   name: {
@@ -18,7 +33,8 @@ const coffeeShema = new Schema({
     type: Boolean,
     default: true
   },
-  sizes: [sizeSchema]
+  sizes: [sizeSchema],
+  reviews: [reviewSchema]
 });
 
 module.exports = model("Coffee", coffeeShema);
