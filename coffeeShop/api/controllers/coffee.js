@@ -98,10 +98,29 @@ const patchById = (req, res, next) => {
     });
 };
 
+const removeById = (req, res, next) => {
+  const coffeeId = req.params.coffeeId;
+
+  Coffee.findByIdAndRemove(coffeeId)
+    .exec()
+    .then(coffee => {
+      if (!coffee)
+        res.status(404).send({ error: `Coffee with id : ${coffeeId} not found` });
+      else {
+        res.status(204).send();
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+};
+
+
 module.exports = {
   create,
   findAll,
   findOneById,
   updateById,
-  patchById
+  patchById,
+  removeById
 };
