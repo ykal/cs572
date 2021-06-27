@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 
 const studentController = require("./student");
 const courseController = require("./course");

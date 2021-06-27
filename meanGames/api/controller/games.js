@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 
 const { Game } = require("../models");
 const game = require("../models/game");
