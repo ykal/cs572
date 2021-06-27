@@ -5,6 +5,7 @@ const { coffeeController } = require("../controllers");
 
 const router = Router();
 
-router.post("/", coffeeController.addCoffee);
+router.post("/", coffeeController.create);
+router.get("/", coffeeController.findAll);
 
 module.exports = router;

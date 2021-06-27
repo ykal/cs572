@@ -2,7 +2,7 @@
 
 const { Coffee } = require("../models");
 
-const addCoffee = (req, res, next) => {
+const create = (req, res, next) => {
   const { name, availablity } = req.body;
   Coffee.create({
     name,
@@ -16,6 +16,18 @@ const addCoffee = (req, res, next) => {
     })
 };
 
+const findAll = (req, res, next) => {
+  Coffee.find({})
+    .exec()
+    .then(coffees => {
+      res.status(200).send(coffees);
+    })
+    .catch(error => {
+      next(error);
+    });
+};
+
 module.exports = {
-  addCoffee
+  create,
+  findAll
 };
