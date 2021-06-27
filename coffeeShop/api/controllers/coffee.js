@@ -75,9 +75,33 @@ const updateById = (req, res, next) => {
     });
 };
 
+const patchById = (req, res, next) => {
+  const coffeeId = req.params.coffeeId;
+  const { name, availablity } = req.body;
+
+  if (!name && availablity === null)
+    res.status(400).send({ error: "At least one coffee attribute is required." });
+
+  Coffee.findById(coffeeId)
+    .exec()
+    .then(coffee => {
+      if (!coffee)
+        res.status(404).send({ error: `Coffee with id : ${coffeeId} not found` });
+      else {
+        coffee.name = name || coffee.name;
+        coffee.availablity = availablity !== null ? availablity : coffee.availablity;
+        updateCoffee(coffee, res, next);
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+};
+
 module.exports = {
   create,
   findAll,
   findOneById,
-  updateById
+  updateById,
+  patchById
 };
