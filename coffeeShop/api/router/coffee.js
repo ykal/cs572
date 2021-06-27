@@ -8,5 +8,6 @@ const router = Router();
 router.post("/", coffeeController.create);
 router.get("/", coffeeController.findAll);
 router.get("/:coffeeId", coffeeController.findOneById);
+router.put("/:coffeeId", coffeeController.updateById);
 
 module.exports = router;
