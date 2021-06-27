@@ -12,6 +12,7 @@ router.put("/:coffeeId", coffeeController.updateById);
 router.patch("/:coffeeId", coffeeController.patchById);
 router.delete("/:coffeeId", coffeeController.removeById);
 
-router.post("/:coffeeId/sizes", sizeController.addSize);
+router.post("/:coffeeId/sizes", sizeController.add);
+router.get("/:coffeeId/sizes", sizeController.findAll);
 
 module.exports = router;

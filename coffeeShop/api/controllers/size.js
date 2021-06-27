@@ -4,7 +4,7 @@ const { Types } = require("mongoose");
 const { Coffee } = require("../models");
 
 
-const addSize = (req, res, next) => {
+const add = (req, res, next) => {
   const coffeeId = req.params.coffeeId;
 
   const { sizeCode } = req.body;
@@ -40,6 +40,25 @@ const addSize = (req, res, next) => {
     });
 }
 
+const findAll = (req, res, next) => {
+  const coffeeId = req.params.coffeeId;
+
+  Coffee.findById(coffeeId)
+    .select("sizes")
+    .exec()
+    .then(coffee => {
+      if (!coffee)
+        res.status(404).send({ error: `Coffee with id : ${coffeeId} not found` });
+      else {
+        res.status(200).send(coffee.sizes);
+      }
+    })
+    .catch(error => {
+      next(error);
+    });
+}
+
 module.exports = {
-  addSize
+  add,
+  findAll
 };
