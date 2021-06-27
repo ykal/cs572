@@ -21,4 +21,4 @@ const coffeeShema = new Schema({
   sizes: [sizeSchema]
 });
 
-module.exports = model("Coffe", coffeeShema);
+module.exports = model("Coffee", coffeeShema);
