@@ -18,7 +18,7 @@ const coffeeShema = new Schema({
     type: Boolean,
     default: true
   },
-  sizes: [sizes]
+  sizes: [sizeSchema]
 });
 
 module.exports = model("Coffe", coffeeShema);
