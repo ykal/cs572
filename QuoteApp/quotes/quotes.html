@@ -1,9 +1,10 @@
-<h1>Quotes</h1>
-<ul>
-  <li ng-repeat="quote in quotes">
-    <div class="quote">
-      <p>Author : {{quote.author}}</p>
-      <p>Content : {{quote.content}}</p>
-    </div>
-  </li>
-</ul>
+<div class="container">
+  <div class="header">
+    <h1 class="text-center">Quotes</h1>
+  </div>
+  <blockquote class="quote-card" ng-repeat="quote in quotes">
+    <p>{{quote.content}}</p>
+
+    <cite> {{quote.author}} </cite>
+  </blockquote>
+</div>

@@ -15,6 +15,10 @@ function QuoteFactory($http) {
   function getRandom() {
     return $http.get("https://api.quotable.io/random")
       .then(res => res.data)
+      .then(res => {
+        console.log(res);
+        return res;
+      })
       .catch(err => {
         console.log(err);
       });;
