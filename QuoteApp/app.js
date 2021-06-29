@@ -1,7 +1,5 @@
 var app = angular.module("app", ["ngRoute"]);
 
-app.config(config);
-
 function config($routeProvider) {
   $routeProvider.when("/", {
     templateUrl: "quotes/quotes.html",
@@ -14,18 +12,10 @@ function config($routeProvider) {
   });
 }
 
-app.factory("QuoteFactory", QuoteFactory);
+app.config(config);
 
-function QuoteFactory($http) {
-  return {
-    getQuotes: getQuotes, getRandom: getRandom
-  };
-  function getQuotes() {
-    return $http.get("https://api.quotable.io/quotes?page=1");
-  }
-  function getRandom() {
-    return $http.get("https://api.quotable.io/random");
-  }
-}
+
+
+
 
 

@@ -1,10 +1,6 @@
-app.controller("QuoteController", function ($scope, $http) {
-  $http.get("https://api.quotable.io/quotes?page=1")
+app.controller("QuoteController", function ($scope, QuoteFactory) {
+  QuoteFactory.getQuotes()
     .then(res => {
-      console.log(res);
-      $scope.quotes = res.data.results;
-    })
-    .catch(err => {
-      console.log(err);
+      $scope.quotes = res.results;
     });
 });
