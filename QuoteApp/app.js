@@ -13,27 +13,6 @@ function config($routeProvider) {
     redirectTo: "/"
   });
 }
-// https://api.quotable.io/random
-app.controller("QuoteController", function ($scope, $http) {
-  $http.get("https://api.quotable.io/quotes?page=1")
-    .then(res => {
-      console.log(res);
-      $scope.quotes = res.data.results;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-})
-
-app.controller("RandomQuoteController", function ($scope, $http) {
-  $http.get("https://api.quotable.io/random")
-    .then(res => {
-      $scope.quote = res.data;
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
 
 app.factory("QuoteFactory", QuoteFactory);
 
