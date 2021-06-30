@@ -3,10 +3,12 @@
 const { Coffee } = require("../models");
 
 const create = (req, res, next) => {
-  const { name, availablity } = req.body;
+  const { name, availablity, description, imageUrl } = req.body;
   Coffee.create({
     name,
-    availablity
+    availablity,
+    description,
+    imageUrl
   })
     .then(coffee => {
       res.status(201).send(coffee);
@@ -54,10 +56,12 @@ const updateCoffee = (coffee, res, next) => {
 
 const updateById = (req, res, next) => {
   const coffeeId = req.params.coffeeId;
-  const { name, availablity } = req.body;
+  const { name, availablity, description, imageUrl } = req.body;
 
   if (!name) res.status(400).send({ error: "name is required." });
   if (availablity === null) res.status(400).send({ error: "availablity is required." });
+  if (description === null) res.status(400).send({ error: "description is required." });
+  if (imageUrl === null) res.status(400).send({ error: "imageUrl is required." });
 
   Coffee.findById(coffeeId)
     .exec()
@@ -67,6 +71,8 @@ const updateById = (req, res, next) => {
       else {
         coffee.name = name;
         coffee.availablity = availablity;
+        coffee.description = description;
+        coffee.imageUrl = imageUrl;
         updateCoffee(coffee, res, next);
       }
     })
@@ -77,9 +83,9 @@ const updateById = (req, res, next) => {
 
 const patchById = (req, res, next) => {
   const coffeeId = req.params.coffeeId;
-  const { name, availablity } = req.body;
+  const { name, availablity, description, imageUrl } = req.body;
 
-  if (!name && availablity === null)
+  if (!name && !description && availablity === null && !imageUrl)
     res.status(400).send({ error: "At least one coffee attribute is required." });
 
   Coffee.findById(coffeeId)
@@ -89,6 +95,8 @@ const patchById = (req, res, next) => {
         res.status(404).send({ error: `Coffee with id : ${coffeeId} not found` });
       else {
         coffee.name = name || coffee.name;
+        coffee.imageUrl = imageUrl || coffee.imageUrl;
+        coffee.description = description || coffee.description;
         coffee.availablity = availablity !== null ? availablity : coffee.availablity;
         updateCoffee(coffee, res, next);
       }

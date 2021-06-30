@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Coffee, world!</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div
+        class="card m-3 coffee-card"
+        style="width: 18rem"
+        ng-repeat="coffee in coffees"
+      >
+        <img
+          class="card-img-top"
+          ng-src="{{coffee.imageUrl || 'https://www.papermc.com/wp-content/uploads/2016/02/placeholder.jpg'}}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{coffee.name}}</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <button
+            ng-click="goToCoffeeDetail(coffee._id)"
+            class="btn btn-primary"
+          >
+            Detail
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

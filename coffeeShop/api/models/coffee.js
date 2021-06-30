@@ -29,6 +29,11 @@ const coffeeShema = new Schema({
     type: String,
     required: true
   },
+  imageUrl: String,
+  description: {
+    type: String,
+    required: true
+  },
   availablity: {
     type: Boolean,
     default: true
