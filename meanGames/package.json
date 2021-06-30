@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/ykal/cs572#readme",
   "dependencies": {
+    "angular": "^1.8.2",
+    "angular-route": "^1.8.2",
     "express": "^4.17.1",
     "mongoose": "^5.12.14"
   },

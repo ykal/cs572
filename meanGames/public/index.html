@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="meanGames">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand p-4" href="#">MEAN Games</a>
+  <body class="bg-dark">
+    <nav class="navbar navbar-light bg-dark">
+      <a class="navbar-brand text-light fg-light" href="#">MEAN Games</a>
     </nav>
-    <div id="content" class="p-4"></div>
+    <div id="content" class="p-4" ng-view></div>
     <footer class="footer">
       <div class="container">
         <p class="text-muted text-center">
-          Index.htm l
+          Index.html
           <a href="https://compro.miu.edu" target="_blank"
             ><img src="./images/miu-compro.png" height="60" alt="MIU Compro"
           /></a>
@@ -28,6 +28,12 @@
         </p>
       </div>
     </footer>
-    <script src="./js/custom.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-route/angular-route.js"></script>
+    <script src="./angular-app/app.js"></script>
+    <script src="./angular-app/factory/gameDataFactory.js"></script>
+    <script src="./angular-app/games/games.js"></script>
+    <script src="./angular-app/game/game.js"></script>
+    <script src="./angular-app/game-rating/game-rating-directive.js"></script>
   </body>
 </html>

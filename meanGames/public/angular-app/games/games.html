@@ -1,0 +1,14 @@
+<div class="games">
+  <div class="form-outline flex flex-column align-items-center mb-4">
+    <input
+      id="search-input"
+      type="search"
+      ng-model="keyword.title"
+      class="form-control w-50"
+      placeholder="Search by title"
+    />
+  </div>
+  <div class="game" ng-repeat="game in games | filter:keyword">
+    <a ng-href="#!/games/{{game._id}}">{{game.title}}</a>
+  </div>
+</div>

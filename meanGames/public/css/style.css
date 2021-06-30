@@ -5,6 +5,41 @@ html {
 
 body {
   margin-bottom: 90px;
+  color: white;
+}
+
+.games {
+}
+
+.game {
+  background-color: black;
+  margin: 10px 0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgb(75, 75, 75);
+  cursor: pointer;
+}
+
+.game a:hover,
+.game a:focus {
+  color: rgb(221, 219, 219);
+}
+
+.game a {
+  text-decoration: none;
+  color: white;
+  translate: color;
+  padding-right: 5px;
+}
+
+.designer {
+  text-decoration: underline;
+  color: #a19f9f;
+  font-size: 0.8rem;
+}
+
+.star img {
+  width: 15px;
 }
 
 .footer {
@@ -14,4 +49,8 @@ body {
   height: 105px;
   background-color: #f5f5f5;
   padding-top: 5px;
+}
+
+.flex {
+  display: flex;
 }
