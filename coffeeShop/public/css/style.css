@@ -15,3 +15,12 @@
   padding: 20px;
   color: white;
 }
+
+.form {
+  width: 50%;
+  margin-top: 30px;
+}
+
+.form-group {
+  margin: 10px;
+}
