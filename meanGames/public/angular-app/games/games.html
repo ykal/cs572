@@ -10,5 +10,163 @@
   </div>
   <div class="game" ng-repeat="game in games | filter:keyword">
     <a ng-href="#!/games/{{game._id}}">{{game.title}}</a>
+    <div>
+      <span class="btn btn-danger" ng-click="onDeleteGame(game._id)"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-trash"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+          /></svg
+      ></span>
+    </div>
+  </div>
+
+  <div class="container">
+    <h4>Add Game</h4>
+    <form novalidate name="gameForm">
+      <div class="form-group">
+        <input
+          name="title"
+          type="text"
+          class="form-control"
+          placeholder="title"
+          ng-model="game.title"
+          required
+        />
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.title.$touched && (gameForm.title.$error.required)"
+        >
+          title is required
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          name="price"
+          type="number"
+          class="form-control"
+          placeholder="Price"
+          ng-model="game.price"
+          required
+        />
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.price.$touched && (gameForm.price.$error.required)"
+        >
+          price is required
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          name="rate"
+          type="number"
+          class="form-control"
+          placeholder="Rate"
+          ng-model="game.rate"
+          required
+          pattern="^[0-5]{1}"
+        />
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.rate.$touched && (gameForm.rate.$error.required)"
+        >
+          Rate is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.rate.$touched && (gameForm.rate.$error.pattern)"
+        >
+          Rate should be between 0 and 5
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          name="year"
+          required
+          type="number"
+          class="form-control"
+          placeholder="Year"
+          ng-model="game.year"
+          pattern="^[1-2]{1}[0-9]{3}"
+        />
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.year.$touched && (gameForm.year.$error.required)"
+        >
+          Year is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.year.$touched && (gameForm.year.$error.pattern)"
+        >
+          Invalid year format
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          name="minPlayers"
+          type="number"
+          class="form-control"
+          placeholder="Minimum # Players"
+          ng-model="game.minPlayers"
+          required
+          pattern="^[1-9][0-9]{0,}"
+        />
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.minPlayers.$touched && (gameForm.minPlayers.$error.required)"
+        >
+          Minimum players is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.minPlayers.$touched && (gameForm.minPlayers.$error.pattern)"
+        >
+          Minimum players should be grater than 0;
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          name="maxPlayers"
+          type="number"
+          class="form-control"
+          placeholder="Maximum # Players"
+          ng-model="game.maxPlayers"
+          required
+          pattern="^[1-9][0-9]{0,}"
+        />
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.maxPlayers.$touched && (gameForm.maxPlayers.$error.required)"
+        >
+          Maximum players is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          ng-if="gameForm.maxPlayers.$touched && (gameForm.maxPlayers.$error.pattern)"
+        >
+          Maximum players should be grater than 0;
+        </p>
+      </div>
+
+      <input
+        type="submit"
+        class="form-control btn btn-success"
+        placeholder="title"
+        ng-model="game.title"
+        ng-click="onAddGame()"
+        ng-disabled="gameForm.$invalid"
+      />
+    </form>
   </div>
 </div>

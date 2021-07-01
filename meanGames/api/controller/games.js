@@ -48,12 +48,14 @@ const getById = (req, res) => {
 }
 
 const createGame = (req, res) => {
-  const { title, rate, price, players } = req.body || {};
+  const { title, rate, price, maxPlayers, minPlayers, year } = req.body || {};
   Game.create({
     title,
     rate: parseInt(rate),
     price: parseFloat(price),
-    players: parseInt(players)
+    minPlayers: parseInt(minPlayers),
+    maxPlayers: parseInt(maxPlayers),
+    year: parseInt(year),
   }, (err, game) => {
     if (err)
       res.status(500).send({ error: err });

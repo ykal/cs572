@@ -47,16 +47,23 @@ const gameSchema = new Schema({
   },
   price: Number,
   designers: [String],
-  players: {
+  minPlayers: {
     type: Number,
     min: 1,
-    max: 10
+  },
+  maxPlayers: {
+    type: Number,
+    min: 1,
   },
   rate: {
     type: Number,
     min: 1,
     max: 5,
     default: 1
+  },
+  year: {
+    type: Number,
+    required: true
   },
   publisher: publisherSchema,
   reviews: [reviewSchema]
