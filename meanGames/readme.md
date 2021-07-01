@@ -1,7 +1,10 @@
-### Day 08 Lab Assignment (MEAN Games)
+### Day 09 Lab Assignment (MEAN Games)
 
 #### Angular frontend application
 
-* fetch games and display on a page 
-* create a page to display detail of a single game on click
-* enable search games by name
+* create a game using angular form validation and data factory.
+* remove a single game
+
+![Add Game gif](./submission/add-game.gif "Add Game")
+
+![Remove Game gif](./submission/delete-game.gif "Remove Game")
