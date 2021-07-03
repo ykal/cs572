@@ -1,0 +1,33 @@
+.form-group {
+  margin: 15px 0;
+}
+
+.job {
+  display: block;
+  width: 200px;
+  border: 1px;
+  padding: 10px;
+  box-shadow: 1px 1px 3px rgb(0 0 0 / 50%);
+  border-radius: 10px;
+  margin: 15px;
+}
+
+.job-detail {
+  margin-top: 100px;
+}
+
+.description {
+  width: 55ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.jobs {
+  display: flex;
+  flex-direction: row;
+}
+
+.form {
+  width: 50%;
+  
+}

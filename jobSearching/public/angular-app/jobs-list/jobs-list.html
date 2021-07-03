@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Job Vacancies</h1>
+  </div>
+</div>
+<div class="container jobs">
+  <div class="job" ng-repeat="job in jobs">
+    <div class="title">
+      <p class="h6">{{job.title}}</p>
+      <p class="text-muted">postd on : {{job.postDate | date:"yyyy-mm-dd"}}</p>
+    </div>
+    <div class="btn-group">
+      <span ng-click="navigateToJob(job._id)" class="btn btn-primary"
+        ><i class="bi- bi-eye"></i
+      ></span>
+      <span ng-click="editJob(job)" class="btn btn-outline-primary"
+        ><i class="bi- bi-pencil-square"></i
+      ></span>
+      <span ng-click="onRemoveJob(job._id)" class="btn btn-outline-danger"
+        ><i class="bi bi-trash"></i
+      ></span>
+    </div>
+  </div>
+</div>
+
+<div class="container form card p-5">
+  <h4>New Job Vacancy</h4>
+  <div class="alert alert-danger" ng-if="message.length">
+    <p>{{message}}</p>
+  </div>
+  <form name="jobForm" ng-submit="onJobFormSubmitted()" novalidate>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        id="title"
+        ng-model="job.title"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        name="description"
+        class="form-control"
+        id="description"
+        ng-model="job.description"
+        rows="3"
+        cols="3"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="salary">Salary</label>
+      <input
+        type="number"
+        class="form-control"
+        name="salary"
+        id="salary"
+        ng-model="job.salary"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="skills"
+        >Skills<em class="text-muted m-3">(separated by comma)</em></label
+      >
+      <input
+        type="text"
+        name="skills"
+        class="form-control"
+        id="skills"
+        ng-model="job.skills"
+      />
+    </div>
+    <div class="form-group">
+      <label for="experience">Experience</label>
+      <input
+        type="text"
+        class="form-control"
+        id="experience"
+        ng-model="job.experience"
+      />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        ng-model="job.address"
+      />
+    </div>
+    <input type="submit" class="form-control btn btn-primary" />
+  </form>
+</div>

@@ -1,0 +1,30 @@
+<div class="container job-detail">
+  <p class="h4">{{job.title}} ({{job.salary | currency:'$'}})</p>
+  <p class="text-muted">On : {{job.postDate | date:"yyyy-mm-dd"}}</p>
+  <hr />
+  <p class="text-body">{{job.description}}</p>
+  <div class="mb-2">
+    <p
+      class="h6 text-decoration-underline text-primary"
+      ng-if="job.skills && job.skills.length"
+    >
+      Skills
+    </p>
+    <li ng-repeat="skill in job.skills">{{skill}}</li>
+  </div>
+  <div class="mb-2">
+    <p class="h6 text-decoration-underline text-primary">Experience</p>
+    <p>{{job.experience}}</p>
+  </div>
+  <div class="mb-2">
+    <p class="h6 text-decoration-underline text-primary">Location</p>
+    <p>{{job.location.address}}</p>
+  </div>
+
+  <a href="#!"
+    ><span ng-click="onRemoveJob(job._id)"
+      ><i class="bi bi-arrow-left"></i
+    ></span>
+    Back</a
+  >
+</div>
