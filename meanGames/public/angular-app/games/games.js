@@ -1,7 +1,11 @@
 angular.module("meanGames").controller("GamesController", GamesController);
 
-function GamesController($scope, GameDataFactory) {
+function GamesController($scope, GameDataFactory, AuthDataFactory) {
   $scope.title = "games";
+  $scope.game = {};
+  $scope.gameForm = {};
+  $scope.isAuthenticated = AuthDataFactory.isAuthenticated;
+
 
   GameDataFactory.getAll()
     .then(games => {
@@ -25,4 +29,5 @@ function GamesController($scope, GameDataFactory) {
         ];
       });
   }
+
 }

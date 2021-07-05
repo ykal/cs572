@@ -1,0 +1,51 @@
+<h4>Register</h4>
+<p class="text-light">{{err}}</p>
+<form name="register" novalidate>
+  <div class="form-group" ng-model="user.name">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      placeholder="Name"
+      ng-model="user.name"
+      required
+    />
+  </div>
+  <div class="form-group" name="register">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      placeholder="Username"
+      ng-model="user.username"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+      ng-model="user.password"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="re-password">Re-Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="re-passwprd"
+      placeholder="Re-Password"
+      ng-model="user.rePassword"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="onRegister()">
+    Submit
+  </button>
+</form>

@@ -16,12 +16,19 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <header></header>
     <div ng-view></div>
     <script src="../node_modules/angular/angular.min.js"></script>
     <script src="../node_modules/angular-route/angular-route.min.js"></script>
+    <script src="../node_modules/angular-jwt/dist/angular-jwt.js"></script>
     <script src="./angular-app/app.js"></script>
     <script src="./angular-app/factory/coffee-data-factory.js"></script>
+    <script src="./angular-app/factory/auth-data-factory.js"></script>
+    <script src="./angular-app/factory/interceptor-factory.js"></script>
+    <script src="./angular-app/auth/auth.js"></script>
+    <script src="./angular-app/header/header.js"></script>
     <script src="./angular-app/coffees/coffees.js"></script>
     <script src="./angular-app/coffee/coffee.js"></script>
+    <script src="./angular-app/register/register.js"></script>
   </body>
 </html>

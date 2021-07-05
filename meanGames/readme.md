@@ -1,10 +1,18 @@
-### Day 09 Lab Assignment (MEAN Games)
+### Weekend 2 (Mean Games)
+
+#### Backend
+
+* user model with username, password and name properties
+* implement login and register endpoints
+* generate `jwt` token when login with a paylod containing `name` of the user
+* create authorization middleware to prevent writing resources form being accessed by unauthenticated request
 
 #### Angular frontend application
 
-* create a game using angular form validation and data factory.
-* remove a single game
+* create a page to register user
+* header directive contining links and logout button
+* show links and forms based on user login status
+* store token to session storage when user loggedin 
+* send the token to every request made to the api
+* restrict routes that should not be active if the user is not authenticated
 
-![Add Game gif](./submission/add-game.gif "Add Game")
-
-![Remove Game gif](./submission/delete-game.gif "Remove Game")

@@ -1,5 +1,8 @@
 <div class="games">
-  <div class="form-outline flex flex-column align-items-center mb-4">
+  <div
+    class="form-outline flex flex-column align-items-center mb-4"
+    ng-if="games.length"
+  >
     <input
       id="search-input"
       type="search"
@@ -10,7 +13,7 @@
   </div>
   <div class="game" ng-repeat="game in games | filter:keyword">
     <a ng-href="#!/games/{{game._id}}">{{game.title}}</a>
-    <div>
+    <div ng-if="isAuthenticated()">
       <span class="btn btn-danger" ng-click="onDeleteGame(game._id)"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +34,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container" ng-if="isAuthenticated()">
     <h4>Add Game</h4>
     <form novalidate name="gameForm">
       <div class="form-group">

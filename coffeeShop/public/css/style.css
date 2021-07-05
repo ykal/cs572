@@ -1,3 +1,5 @@
+body {
+}
 #coffee {
   background-position: center;
   background-position: center !important;
@@ -23,4 +25,24 @@
 
 .form-group {
   margin: 10px;
+}
+
+.form-inline {
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+form {
+  width: 40%;
+}
+
+.form-control {
+  margin: 10px 0;
+}
+
+.form-group {
+  margin: 10px 0;
 }

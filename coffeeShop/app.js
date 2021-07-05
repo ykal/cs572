@@ -6,7 +6,7 @@ const express = require("express");
 const path = require("path");
 const apiRouter = require("./api/router");
 
-const PORT = 5050;
+const PORT = 5059;
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));

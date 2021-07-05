@@ -1,6 +1,8 @@
 angular.module("coffeeApp").controller("CoffeesController", CoffeesController);
 
-function CoffeesController($scope, $location, CoffeeDataFactory) {
+function CoffeesController($scope, $location, CoffeeDataFactory, AuthDataFactory) {
+  $scope.coffee = {};
+  $scope.coffeeForm = {};
   CoffeeDataFactory.getAll()
     .then(coffees => {
       $scope.coffees = coffees;
@@ -27,4 +29,5 @@ function CoffeesController($scope, $location, CoffeeDataFactory) {
         ];
       });
   }
+  $scope.isAuthenticated = AuthDataFactory.isAuthenticated;
 }

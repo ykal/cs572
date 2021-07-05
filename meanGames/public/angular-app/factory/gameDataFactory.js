@@ -10,7 +10,7 @@ function GameDataFactory($http) {
 }
 
 function getAll(http) {
-  return http.get("/api/games?limit=5&offset=31")
+  return http.get("/api/games")
     .then(res => res.data)
     .catch(error => console.log(error));
 }
