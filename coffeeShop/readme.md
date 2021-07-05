@@ -15,4 +15,5 @@
 * store token to session storage when user loggedin 
 * send the token to every request made to the api
 * restrict routes that should not be active if the user is not authenticated
+* search by name
 

@@ -3,11 +3,22 @@
     <h1 class="display-4">Coffee, world!</h1>
   </div>
   <div class="container">
+    <input
+      id="search-input"
+      type="search"
+      ng-model="keyword.name"
+      class="form-control w-50"
+      placeholder="Search by name"
+    />
+    <div
+      class="form-outline flex flex-column align-items-center mb-4"
+      ng-if="games.length"
+    ></div>
     <div class="row">
       <div
         class="card m-3 coffee-card"
         style="width: 18rem"
-        ng-repeat="coffee in coffees"
+        ng-repeat="coffee in coffees| filter:keyword"
       >
         <img
           class="card-img-top"
