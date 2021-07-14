@@ -1,0 +1,13 @@
+<div class="game">
+  <p class="h4">{{ game?.title }}</p>
+  <!-- <game-rating stars="stars"/> -->
+
+  <p>
+    By
+    <span class="designer" *ngFor="let designer of game?.designers">
+      {{ designer }}
+    </span>
+  </p>
+</div>
+
+<a [routerLink]="['/games']">Show All Games</a>

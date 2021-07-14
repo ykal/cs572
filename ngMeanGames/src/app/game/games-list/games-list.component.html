@@ -1,0 +1,207 @@
+<div class="games">
+  <div
+    class="form-outline flex flex-column align-items-center mb-4"
+    *ngIf="games.length"
+  >
+    <input
+      id="search-input"
+      type="search"
+      [(ngModel)]="keyword"
+      class="form-control w-50"
+      placeholder="Search by title"
+    />
+  </div>
+  <div class="game" *ngFor="let game of games | filter: keyword">
+    <a [routerLink]="['/games', game._id]">{{ game.title }}</a>
+    <div>
+      <!--  *ngIf="isAuthenticated()"> -->
+      <span class="btn btn-danger" (click)="onDeleteGame(game._id || '')"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-trash"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+          /></svg
+      ></span>
+    </div>
+  </div>
+  <div class="container">
+    <h4>Add Game</h4>
+    <form novalidate [formGroup]="gameForm" (ngSubmit)="onCreateGame()">
+      <div class="form-group">
+        <input
+          value=""
+          (change)="change($event)"
+          name="title"
+          type="text"
+          class="form-control"
+          placeholder="title"
+          [(ngModel)]="game.title"
+          formControlName="title"
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.title.touched &&
+            gameForm.controls.title.errors?.required
+          "
+        >
+          title is required
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          (change)="change($event)"
+          name="price"
+          type="number"
+          class="form-control"
+          placeholder="Price"
+          [(ngModel)]="game.price"
+          formControlName="price"
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.price.touched &&
+            gameForm.controls.price.errors?.required
+          "
+        >
+          price is required
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          (change)="change($event)"
+          type="number"
+          class="form-control"
+          placeholder="Rate"
+          [(ngModel)]="game.rate"
+          required
+          formControlName="rate"
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.rate.touched &&
+            gameForm.controls.rate.errors?.required
+          "
+        >
+          Rate is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.rate.touched &&
+            gameForm.controls.rate.errors?.pattern
+          "
+        >
+          Rate should be between 0 and 5
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          (change)="change($event)"
+          name="year"
+          type="number"
+          class="form-control"
+          placeholder="Year"
+          [(ngModel)]="game.year"
+          formControlName="year"
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.year.touched &&
+            gameForm.controls.year.errors?.required
+          "
+        >
+          Year is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.year.touched &&
+            gameForm.controls.year.errors?.pattern
+          "
+        >
+          Invalid year format
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          (change)="change($event)"
+          name="minPlayers"
+          type="number"
+          class="form-control"
+          placeholder="Minimum # Players"
+          [(ngModel)]="game.minPlayers"
+          formControlName="minPlayers"
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.minPlayers.touched &&
+            gameForm.controls.minPlayers.errors?.required
+          "
+        >
+          Minimum players is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.minPlayers.touched &&
+            gameForm.controls.minPlayers.errors?.pattern
+          "
+        >
+          Minimum players should be grater than 0;
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          (change)="change($event)"
+          name="maxPlayers"
+          type="number"
+          class="form-control"
+          placeholder="Maximum # Players"
+          [(ngModel)]="game.maxPlayers"
+          formControlName="maxPlayers"
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.maxPlayers.touched &&
+            gameForm.controls.maxPlayers.errors?.required
+          "
+        >
+          Maximum players is required
+        </p>
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            gameForm.controls.maxPlayers.touched &&
+            gameForm.controls.maxPlayers.errors?.pattern
+          "
+        >
+          Maximum players should be grater than 0
+        </p>
+      </div>
+
+      <input
+        type="submit"
+        class="form-control btn btn-success"
+        placeholder="title"
+        ng-click="onAddGame()"
+        [disabled]="gameForm.invalid"
+      />
+    </form>
+  </div>
+</div>
