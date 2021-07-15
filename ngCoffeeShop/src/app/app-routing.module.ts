@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthenticatedGuard } from './shared/auth/authenticated.guard';
 
 const routes: Routes = [
     {path: "", redirectTo: "/coffees", pathMatch: "full"},
   {path: "auth", loadChildren: () => import('./shared/auth/auth.module').then(m => m.AuthModule), canDeactivate: []},
   {path: "coffees", loadChildren: () => import('./coffee/coffee.module').then(m => m.CoffeModule), canDeactivate: []},
+   {path: "profile", component: ProfileComponent, canActivate: [AuthenticatedGuard]}
+
 ];
 
 @NgModule({
