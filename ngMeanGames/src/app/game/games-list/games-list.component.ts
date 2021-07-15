@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GamesApiService } from '../services/games-api.service';
 import {Game} from '../../model/game';
 import { AuthService } from 'src/app/shared/auth/services/auth.service';
+import { GameQueryParam } from 'src/app/model/game-query-param';
 
 @Component({
   selector: 'app-games-list',
@@ -30,10 +31,14 @@ export class GamesListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.gameApiService.getAll()
-    .then(games => {
-      this.games = games;
-    });
+    this.fetchGames();
+  }
+
+  private fetchGames(params?: GameQueryParam) {
+    this.gameApiService.getAll(params)
+      .then(games => {
+        this.games = games;
+      });
     this.refreshForm();
   }
 
@@ -68,5 +73,9 @@ export class GamesListComponent implements OnInit {
   refreshForm() {
     this.game = this.defaultGame;
     this.gameForm.reset();
+  }
+
+  onSearch(event: any) {
+    this.fetchGames({title: this.keyword});
   }
 }

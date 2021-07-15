@@ -4,6 +4,7 @@ import { CoffeeApiService } from '../services/coffees-api.service';
 import {Coffee} from '../../model/coffee';
 import { AuthService } from 'src/app/shared/auth/services/auth.service';
 import { Router } from '@angular/router';
+import { CoffeeQueryParam } from 'src/app/model/cofffee-query-param';
 
 @Component({
   selector: 'app-coffees-list',
@@ -29,12 +30,16 @@ export class CoffeesListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.coffeeApiService.getAll()
-    .then(coffees => {
-      this.coffees = coffees;
-      console.log(this.coffees)
-    });
+    this.fetchCoffees();
     this.refreshForm();
+  }
+
+  private fetchCoffees(queryParam?: CoffeeQueryParam) {
+    this.coffeeApiService.getAll(queryParam)
+      .then(coffees => {
+        this.coffees = coffees;
+        console.log(this.coffees);
+      });
   }
 
   onCreateCoffee() {
@@ -73,5 +78,9 @@ export class CoffeesListComponent implements OnInit {
 
   goToCoffeeDetail(coffeeId: string) {
     this.router.navigate(["/coffees", coffeeId]);
+  }
+
+  onSearch(event: any) {
+    this.fetchCoffees({name: this.keyword});
   }
 }

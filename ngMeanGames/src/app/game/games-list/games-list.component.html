@@ -1,12 +1,10 @@
 <div class="games">
-  <div
-    class="form-outline flex flex-column align-items-center mb-4"
-    *ngIf="games.length"
-  >
+  <div class="form-outline flex flex-column align-items-center mb-4">
     <input
       id="search-input"
       type="search"
       [(ngModel)]="keyword"
+      (keyup)="onSearch($event)"
       class="form-control w-50"
       placeholder="Search by title"
     />

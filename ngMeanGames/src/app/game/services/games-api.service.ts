@@ -1,4 +1,6 @@
+import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
+import { GameQueryParam } from 'src/app/model/game-query-param';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Game } from '../../model/game';
 
@@ -10,8 +12,8 @@ export class GamesApiService {
 
   constructor(private apiService: ApiService<Game>) { }
 
-  getAll(): Promise<Game[]> {
-    return  this.apiService.get(this.GAME_API_URL)
+  getAll(queryParam?: GameQueryParam): Promise<Game[]> {
+    return  this.apiService.get(this.GAME_API_URL, queryParam)
     .toPromise()
     .then(res => <Game[]>res);
   }

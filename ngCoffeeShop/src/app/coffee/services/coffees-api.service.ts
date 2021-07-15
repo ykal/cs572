@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CoffeeQueryParam } from 'src/app/model/cofffee-query-param';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { Coffee } from '../../model/coffee';
 
@@ -10,8 +11,8 @@ export class CoffeeApiService {
 
   constructor(private apiService: ApiService<Coffee>) { }
 
-  getAll(): Promise<Coffee[]> {
-    return  this.apiService.get(this.COFFEE_API_URL)
+  getAll(queryParam?: CoffeeQueryParam): Promise<Coffee[]> {
+    return  this.apiService.get(this.COFFEE_API_URL, queryParam)
     .toPromise()
     .then(res => <Coffee[]>res);
   }
@@ -35,5 +36,4 @@ export class CoffeeApiService {
     .toPromise()
     .then(res => res);
   }
-
 }

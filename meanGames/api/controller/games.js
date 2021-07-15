@@ -11,6 +11,7 @@ const getAll = (req, res) => {
   let offset = req && req.query && parseInt(req.query.offset) || 0;
   let lat = req && req.query && parseFloat(req.query.lat) || null;
   let lng = req && req.query && parseFloat(req.query.lng) || null;
+  let title = req && req.query && req.query.title;
   let query = {};
 
   if (lat && lng) {
@@ -24,6 +25,10 @@ const getAll = (req, res) => {
         $minDistance: MIN_DISTANCE
       }
     }
+  }
+
+  if (title) {
+    query.title = ({ $regex: new RegExp(`.*${title}.*`, "i") });
   }
 
   Game.find(query).skip(offset).limit(count).exec((err, games) => {

@@ -19,7 +19,13 @@ const create = (req, res, next) => {
 };
 
 const findAll = (req, res, next) => {
-  Coffee.find({})
+  let name = req && req.query && req.query.name;
+  let query = {};
+  if (name) {
+    query.name = ({ $regex: new RegExp(`.*${name}.*`, "i") });
+  }
+
+  Coffee.find(query)
     .exec()
     .then(coffees => {
       res.status(200).send(coffees);
