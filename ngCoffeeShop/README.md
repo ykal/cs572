@@ -15,8 +15,8 @@
 
 #### Coffee Module
 
-* Contains 2 components (`games-list` and `game-detail`)
-* A service related to game, which is composed of `ApiService` from the shared module
+* Contains 2 components (`coffee-list` and `coffee-detail`)
+* A service related to coffee, which is composed of `ApiService` from the shared module
 * implemented standalone router module for coffee related routes
 * Used `ReactiveForms` to handle and validate form submisions
 
