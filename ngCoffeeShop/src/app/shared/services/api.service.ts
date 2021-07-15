@@ -5,7 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class ApiService<T> {
-  private readonly  API_URL = "http://localhost:5050/api";
+  private readonly  API_URL = "http://localhost:5059/api";
   constructor(private httpClient: HttpClient) { }
 
    get(resourceUrl: string): Observable<Object> {
@@ -25,7 +25,7 @@ export class ApiService<T> {
   }
 
   delete(resourceUrl: string, id: string): Observable<Object> {
-    return this.httpClient.get(`${this.API_URL}/${resourceUrl}/${id}`);
+    return this.httpClient.delete(`${this.API_URL}/${resourceUrl}/${id}`);
   }
 
   handleError(error: any) {

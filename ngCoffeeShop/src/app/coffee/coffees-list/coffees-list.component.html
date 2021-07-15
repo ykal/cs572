@@ -1,0 +1,170 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Coffee, world!</h1>
+  </div>
+  <div class="container">
+    <input
+      id="search-input"
+      type="search"
+      [(ngModel)]="keyword"
+      class="form-control w-50"
+      placeholder="Search by name"
+    />
+    <div
+      class="form-outline flex flex-column align-items-center mb-4"
+      *ngIf="coffees.length"
+    ></div>
+    <div class="row">
+      <div
+        class="card m-3 coffee-card"
+        style="width: 18rem"
+        *ngFor="let coffee of coffees | filter: keyword"
+      >
+        <img
+          class="card-img-top"
+          [src]="
+            coffee.imageUrl ||
+            'https://www.papermc.com/wp-content/uploads/2016/02/placeholder.jpg'
+          "
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ coffee.name }}</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <button
+            (click)="goToCoffeeDetail(coffee?._id || '')"
+            class="btn btn-primary"
+          >
+            Detail
+          </button>
+          <button
+            *ngIf="authService.isAuthenticated()"
+            class="btn btn-outline-danger"
+            (click)="onDeleteCoffee(coffee._id || '')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-trash"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form" *ngIf="authService.isAuthenticated()">
+    <h4>Add Coffee</h4>
+    <form
+      novalidate
+      name="coffeeForm"
+      [formGroup]="coffeeForm"
+      (ngSubmit)="onCreateCoffee()"
+    >
+      <div class="form-group">
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          formControlName="name"
+          [(ngModel)]="coffee.name"
+          required
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            coffeeForm.controls.name.touched &&
+            coffeeForm.controls.name.errors?.required
+          "
+        >
+          Name is required
+        </p>
+      </div>
+
+      <div class="form-group">
+        <input
+          name="imageUrl"
+          type="text"
+          class="form-control"
+          placeholder="Image Url"
+          formControlName="imageUrl"
+          [(ngModel)]="coffee.imageUrl"
+          required
+        />
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            coffeeForm.controls.imageUrl.touched &&
+            coffeeForm.controls.imageUrl.errors?.required
+          "
+        >
+          Image Url is required
+        </p>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input
+            name="availablity"
+            id="availablity"
+            required
+            type="checkbox"
+            class="form-check-input"
+            placeholder="Availablity"
+            [(ngModel)]="coffee.availablity"
+            formControlName="availablity"
+          />
+          <label class="form-check-label" for="availablity"
+            >Is available now ?</label
+          >
+        </div>
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            coffeeForm.controls.availablity.touched &&
+            coffeeForm.controls.availablity.errors?.required
+          "
+        >
+          Availablity is required
+        </p>
+      </div>
+      <div class="form-group">
+        <textarea
+          name="description"
+          id="description"
+          class="form-control"
+          rows="3"
+          placeholder="Description"
+          [(ngModel)]="coffee.description"
+          formControlName="description"
+          required
+        ></textarea>
+        <p
+          class="text-danger bg-light"
+          *ngIf="
+            coffeeForm.controls.description.touched &&
+            coffeeForm.controls.description.errors?.required
+          "
+        >
+          Description is required
+        </p>
+      </div>
+
+      <input
+        type="submit"
+        class="form-control btn btn-primary"
+        [disabled]="coffeeForm.invalid"
+      />
+    </form>
+  </div>
+</div>

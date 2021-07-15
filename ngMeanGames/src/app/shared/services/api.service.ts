@@ -25,7 +25,7 @@ export class ApiService<T> {
   }
 
   delete(resourceUrl: string, id: string): Observable<Object> {
-    return this.httpClient.get(`${this.API_URL}/${resourceUrl}/${id}`);
+    return this.httpClient.delete(`${this.API_URL}/${resourceUrl}/${id}`);
   }
 
   handleError(error: any) {

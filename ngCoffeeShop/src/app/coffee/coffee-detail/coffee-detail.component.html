@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="coffee" id="coffee">
+    <div class="content">
+      <p class="h4">{{ coffee?.name }}</p>
+      <p>{{ coffee?.description }}</p>
+    </div>
+  </div>
+  <div class="container">
+    <div
+      class="reviews mt-4"
+      *ngIf="coffee && coffee.reviews && coffee.reviews.length > 0"
+    >
+      <p class="h5">Reviews</p>
+      <div class="review w-50" *ngFor="let review of coffee?.reviews || []">
+        <p class="bg-secondary text-white p-3">
+          <span><i class="bi bi-person-circle"></i></span> {{ review?.name }}
+        </p>
+        <p class="border-bottom pb-3">{{ review.review }}</p>
+        <p class="text-muted">
+          <span><i class="bi bi-clock pe-2"></i></span
+          >{{ review.date | date: "yyyy-MMM-dd hh:mm" }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <a href="/"> Back </a>
+</div>
