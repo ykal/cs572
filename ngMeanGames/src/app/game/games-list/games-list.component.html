@@ -13,7 +13,7 @@
   </div>
   <div class="game" *ngFor="let game of games | filter: keyword">
     <a [routerLink]="['/games', game._id]">{{ game.title }}</a>
-    <div>
+    <div *ngIf="authService.isAuthenticated()">
       <!--  *ngIf="isAuthenticated()"> -->
       <span class="btn btn-danger" (click)="onDeleteGame(game._id || '')"
         ><svg

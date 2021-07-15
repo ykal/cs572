@@ -9,11 +9,13 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { GameModule } from './game/game.module';
 import { ProfileComponent } from './profile/profile.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
