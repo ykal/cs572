@@ -6,14 +6,14 @@ interface Publisher {
 
 export interface Game {
   _id?: string;
-  designers: string[];
-  rate: number;
+  designers?: string[];
+  rate?: number;
   title: string;
-  year: number;
-  price:number;
-  minPlayers: number;
-  maxPlayers: number;
+  year?: number;
+  price?:number;
+  minPlayers?: number;
+  maxPlayers?: number;
   publisher?: Publisher;
-  minAge: number;
+  minAge?: number;
   reviews?: string[]
 }

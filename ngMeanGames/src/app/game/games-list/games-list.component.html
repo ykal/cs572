@@ -37,162 +37,168 @@
   <div class="container" *ngIf="authService.isAuthenticated()">
     <h4>Add Game</h4>
     <form novalidate [formGroup]="gameForm" (ngSubmit)="onCreateGame()">
-      <div class="form-group">
-        <input
-          value=""
-          (change)="change($event)"
-          name="title"
-          type="text"
-          class="form-control"
-          placeholder="title"
-          [(ngModel)]="game.title"
-          formControlName="title"
-        />
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.title.touched &&
-            gameForm.controls.title.errors?.required
-          "
-        >
-          title is required
-        </p>
-      </div>
-      <div class="form-group">
-        <input
-          (change)="change($event)"
-          name="price"
-          type="number"
-          class="form-control"
-          placeholder="Price"
-          [(ngModel)]="game.price"
-          formControlName="price"
-        />
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.price.touched &&
-            gameForm.controls.price.errors?.required
-          "
-        >
-          price is required
-        </p>
-      </div>
-      <div class="form-group">
-        <input
-          (change)="change($event)"
-          type="number"
-          class="form-control"
-          placeholder="Rate"
-          [(ngModel)]="game.rate"
-          required
-          formControlName="rate"
-        />
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.rate.touched &&
-            gameForm.controls.rate.errors?.required
-          "
-        >
-          Rate is required
-        </p>
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.rate.touched &&
-            gameForm.controls.rate.errors?.pattern
-          "
-        >
-          Rate should be between 0 and 5
-        </p>
-      </div>
-      <div class="form-group">
-        <input
-          (change)="change($event)"
-          name="year"
-          type="number"
-          class="form-control"
-          placeholder="Year"
-          [(ngModel)]="game.year"
-          formControlName="year"
-        />
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.year.touched &&
-            gameForm.controls.year.errors?.required
-          "
-        >
-          Year is required
-        </p>
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.year.touched &&
-            gameForm.controls.year.errors?.pattern
-          "
-        >
-          Invalid year format
-        </p>
-      </div>
-      <div class="form-group">
-        <input
-          (change)="change($event)"
-          name="minPlayers"
-          type="number"
-          class="form-control"
-          placeholder="Minimum # Players"
-          [(ngModel)]="game.minPlayers"
-          formControlName="minPlayers"
-        />
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.minPlayers.touched &&
-            gameForm.controls.minPlayers.errors?.required
-          "
-        >
-          Minimum players is required
-        </p>
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.minPlayers.touched &&
-            gameForm.controls.minPlayers.errors?.pattern
-          "
-        >
-          Minimum players should be grater than 0;
-        </p>
-      </div>
-      <div class="form-group">
-        <input
-          (change)="change($event)"
-          name="maxPlayers"
-          type="number"
-          class="form-control"
-          placeholder="Maximum # Players"
-          [(ngModel)]="game.maxPlayers"
-          formControlName="maxPlayers"
-        />
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.maxPlayers.touched &&
-            gameForm.controls.maxPlayers.errors?.required
-          "
-        >
-          Maximum players is required
-        </p>
-        <p
-          class="text-danger bg-light"
-          *ngIf="
-            gameForm.controls.maxPlayers.touched &&
-            gameForm.controls.maxPlayers.errors?.pattern
-          "
-        >
-          Maximum players should be grater than 0
-        </p>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <input
+              value=""
+              (change)="change($event)"
+              name="title"
+              type="text"
+              class="form-control"
+              placeholder="title"
+              [(ngModel)]="game.title"
+              formControlName="title"
+            />
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.title.touched &&
+                gameForm.controls.title.errors?.required
+              "
+            >
+              title is required
+            </p>
+          </div>
+          <div class="form-group">
+            <input
+              (change)="change($event)"
+              name="price"
+              type="number"
+              class="form-control"
+              placeholder="Price"
+              [(ngModel)]="game.price"
+              formControlName="price"
+            />
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.price.touched &&
+                gameForm.controls.price.errors?.required
+              "
+            >
+              price is required
+            </p>
+          </div>
+          <div class="form-group">
+            <input
+              (change)="change($event)"
+              type="number"
+              class="form-control"
+              placeholder="Rate"
+              [(ngModel)]="game.rate"
+              required
+              formControlName="rate"
+            />
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.rate.touched &&
+                gameForm.controls.rate.errors?.required
+              "
+            >
+              Rate is required
+            </p>
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.rate.touched &&
+                gameForm.controls.rate.errors?.pattern
+              "
+            >
+              Rate should be between 0 and 5
+            </p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <input
+              (change)="change($event)"
+              name="year"
+              type="number"
+              class="form-control"
+              placeholder="Year"
+              [(ngModel)]="game.year"
+              formControlName="year"
+            />
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.year.touched &&
+                gameForm.controls.year.errors?.required
+              "
+            >
+              Year is required
+            </p>
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.year.touched &&
+                gameForm.controls.year.errors?.pattern
+              "
+            >
+              Invalid year format
+            </p>
+          </div>
+          <div class="form-group">
+            <input
+              (change)="change($event)"
+              name="minPlayers"
+              type="number"
+              class="form-control"
+              placeholder="Minimum # Players"
+              [(ngModel)]="game.minPlayers"
+              formControlName="minPlayers"
+            />
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.minPlayers.touched &&
+                gameForm.controls.minPlayers.errors?.required
+              "
+            >
+              Minimum players is required
+            </p>
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.minPlayers.touched &&
+                gameForm.controls.minPlayers.errors?.pattern
+              "
+            >
+              Minimum players should be grater than 0;
+            </p>
+          </div>
+          <div class="form-group">
+            <input
+              (change)="change($event)"
+              name="maxPlayers"
+              type="number"
+              class="form-control"
+              placeholder="Maximum # Players"
+              [(ngModel)]="game.maxPlayers"
+              formControlName="maxPlayers"
+            />
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.maxPlayers.touched &&
+                gameForm.controls.maxPlayers.errors?.required
+              "
+            >
+              Maximum players is required
+            </p>
+            <p
+              class="text-danger bg-light"
+              *ngIf="
+                gameForm.controls.maxPlayers.touched &&
+                gameForm.controls.maxPlayers.errors?.pattern
+              "
+            >
+              Maximum players should be grater than 0
+            </p>
+          </div>
+        </div>
       </div>
 
       <input

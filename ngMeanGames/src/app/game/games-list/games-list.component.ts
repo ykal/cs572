@@ -11,14 +11,7 @@ import { AuthService } from 'src/app/shared/auth/services/auth.service';
 })
 export class GamesListComponent implements OnInit {
   private readonly defaultGame: Game = {
-    designers: [],
-    rate: 0,
-    title:"",
-    year: 0,
-    price:0,
-    minPlayers: 0,
-    maxPlayers: 0,
-    minAge: 0,
+    title: ""
   };
   games:Game[] = [];
   keyword = "";

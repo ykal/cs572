@@ -1,7 +1,7 @@
 <div class="card bg-dark w-50 m-auto p-2">
   <p class="h4">{{ game?.title }}</p>
   <!-- <game-rating stars="stars"/> -->
-  <app-game-star [rate]="game.rate"></app-game-star>
+  <app-game-star [rate]="game.rate || 0"></app-game-star>
   <p>
     By
     <span class="designer" *ngFor="let designer of game?.designers">
