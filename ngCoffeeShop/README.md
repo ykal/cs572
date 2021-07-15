@@ -33,3 +33,4 @@
 * Wraps all modules and bootstrap with a root routing module
 * used lazy loading of moadules on first bootstrap
 * Page not found component for unmatched routes
+* Implemented ppropreate search functionality 
