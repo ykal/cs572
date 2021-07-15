@@ -9,6 +9,7 @@ import { GamesListComponent } from './games-list/games-list.component';
 import { FilterPipe } from './pipes/filter.pipe';
 
 import { SharedModule } from '../shared/shared.module';
+import { GameStarComponent } from './game-star/game-star.component';
 
 
 
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     GamesListComponent,
     GameDetailComponent,
     FilterPipe,
+    GameStarComponent,
   ],
   imports: [
     CommonModule,
