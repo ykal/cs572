@@ -8,6 +8,8 @@ body {
   margin-bottom: 90px;
   background-color: rgb(34, 33, 33);
   color: white;
+  overflow-y: scroll;
+  padding-bottom: 50px;
 }
 
 .games {
@@ -60,9 +62,6 @@ body {
 
 .flex {
   display: flex;
-}
-
-form {
 }
 
 .form-control {

@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';
 import { ApiService } from './services/api.service';
 import { AuthModule } from './auth/auth.module';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     HeaderComponent,
-    AuthModule
+    AuthModule,
+    FooterComponent
   ],
   providers: [
     ApiService
