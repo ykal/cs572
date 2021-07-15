@@ -1,27 +1,35 @@
-# NgCoffeeShop
+### Angular2 (Mean Coffee)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
+#### Shared Module
 
-## Development server
+* This module contains modules, components and services that can be reused throught out different modules
+* It consists the `Auth` module, `ApiService`, `header` and `footer`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Auth Module
 
-## Code scaffolding
+* contains services related to authentication and authorization including route guard services which implements `canActivate` interface
+* authentication service composed from `ApiService` from shared module
+* used `jwt-helper` to decode the token
+* every route is guarded based on the authentication route guard rule
+* used `localstorage` api to store the token
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Coffee Module
 
-## Build
+* Contains 2 components (`games-list` and `game-detail`)
+* A service related to game, which is composed of `ApiService` from the shared module
+* implemented standalone router module for coffee related routes
+* Used `ReactiveForms` to handle and validate form submisions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+#### Profile Component
 
-## Running unit tests
+* this page is visible only if the user is authenticated
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+##### Model (Interface)
+  
+* Used interfaces for coffee model
 
-## Running end-to-end tests
+#### App Module
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Wraps all modules and bootstrap with a root routing module
+* used lazy loading of moadules on first bootstrap
+* Page not found component for unmatched routes
