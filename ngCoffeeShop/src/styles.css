@@ -1,1 +1,49 @@
+body {
+}
+#coffee {
+  background-position: center;
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding-top: 100px;
+}
+
+#coffee .content {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  color: white;
+}
+
+.form {
+  width: 50%;
+  margin-top: 30px;
+}
+
+.form-group {
+  margin: 10px;
+}
+
+.form-inline {
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+form {
+  width: 40%;
+}
+
+.form-control {
+  margin: 10px 0;
+}
+
+.form-group {
+  margin: 10px 0;
+}
 /* You can add global styles to this file, and also import other style files */
