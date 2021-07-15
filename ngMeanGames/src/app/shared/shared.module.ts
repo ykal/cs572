@@ -6,6 +6,8 @@ import { ApiService } from './services/api.service';
 import { AuthModule } from './auth/auth.module';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptor } from './services/api.interceptor';
 
 
 
@@ -25,7 +27,12 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   providers: [
-    ApiService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    },
+    ApiService,
   ]
 })
 export class SharedModule { }
