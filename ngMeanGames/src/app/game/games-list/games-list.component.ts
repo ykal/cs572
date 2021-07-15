@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GamesApiService } from '../services/games-api.service';
 import {Game} from '../../model/game';
+import { AuthService } from 'src/app/shared/auth/services/auth.service';
 
 @Component({
   selector: 'app-games-list',
@@ -24,7 +25,7 @@ export class GamesListComponent implements OnInit {
   gameForm!: FormGroup;
   game: Game = this.defaultGame;
 
-  constructor(private gameApiService: GamesApiService) {
+  constructor(private gameApiService: GamesApiService, public authService: AuthService) {
     this.gameForm = new FormGroup({
       title: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),

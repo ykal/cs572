@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
 import { GameModule } from './game/game.module';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,55 @@
+<h4>Register</h4>
+<div class="alert alert-danger w-25" *ngIf="errorMessage.length">
+  {{ errorMessage }}
+</div>
+<form name="register" novalidate (ngSubmit)="register()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      placeholder="Name"
+      [(ngModel)]="user.name"
+      required
+    />
+  </div>
+  <div class="form-group" name="register">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      placeholder="Username"
+      name="username"
+      [(ngModel)]="user.username"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+      name="password"
+      [(ngModel)]="user.password"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="re-password">Re-Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="re-passwprd"
+      placeholder="Re-Password"
+      name="rePassword"
+      [(ngModel)]="user.rePassword"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

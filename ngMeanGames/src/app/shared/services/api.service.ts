@@ -1,33 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class ApiService<T> {
   private readonly  API_URL = "http://localhost:5050/api";
   constructor(private httpClient: HttpClient) { }
 
-   getAll(resourceUrl: string): Promise<T[]> {
+   get(resourceUrl: string): Observable<Object> {
     return  this.httpClient.get(`${this.API_URL}/${resourceUrl}`)
-    .toPromise()
-    .then(res => <T[]>res);
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
-  create(resourceUrl: string, game: T): Promise<T> {
-    return  this.httpClient.post(`${this.API_URL}/${resourceUrl}`, game)
-    .toPromise()
-    .then(res => <T>res);
+  post(resourceUrl: string, data: T): Observable<Object> {
+    return  this.httpClient.post(`${this.API_URL}/${resourceUrl}`, data);
   }
 
-  getOneById(resourceUrl: string, gameId: string): Promise<T> {
-    return this.httpClient.get(`${this.API_URL}/${resourceUrl}/${gameId}`)
-    .toPromise()
-    .then(res => <T>res);
+  put(resourceUrl: string, data: T): Observable<Object> {
+    return  this.httpClient.put(`${this.API_URL}/${resourceUrl}`, data);
   }
 
-  removeOneById(resourceUrl: string, gameId: string): Promise<any> {
-    return this.httpClient.get(`${this.API_URL}/${resourceUrl}/${gameId}`)
-    .toPromise()
-    .then(res => res);
+  delete(resourceUrl: string, id: string): Observable<Object> {
+    return this.httpClient.get(`${this.API_URL}/${resourceUrl}/${id}`);
+  }
+
+  handleError(error: any) {
+    let errorMessage = "" ;
+    if(error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = `Error Code: ${error.status}\n Message: ${error.message}`
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
   
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { ApiService } from './services/api.service';
+import { AuthModule } from './auth/auth.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,10 +14,12 @@ import { ApiService } from './services/api.service';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    FormsModule,
+    RouterModule,
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    AuthModule
   ],
   providers: [
     ApiService

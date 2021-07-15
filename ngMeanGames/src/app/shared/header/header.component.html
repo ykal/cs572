@@ -2,7 +2,7 @@
   class="navbar navbar-expand-lg navbar-dark bg-dark p-2"
   ng-controller="AuthController"
 >
-  <a class="navbar-brand" href="#">MEAN Games</a>
+  <a class="navbar-brand" href="/">MEAN Games</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -23,26 +23,33 @@
         class="nav-item nav-link"
         [routerLink]="['/profile']"
         routerLinkActive="profile"
+        *ngIf="authService.isAuthenticated()"
         >Profile</a
       >
       <a
         class="nav-item nav-link"
-        [routerLink]="['/register']"
+        [routerLink]="['/auth/register']"
         routerLinkActive="register"
+        *ngIf="!authService.isAuthenticated()"
         >Register</a
       >
     </div>
   </div>
 
   <!-- if user is unAuthenticated -->
-  <form class="form-inline" name="loginForm">
+  <form
+    class="form-inline"
+    name="loginForm"
+    (ngSubmit)="login()"
+    *ngIf="!authService.isAuthenticated()"
+  >
     <input
       class="form-control mr-2"
       type="text"
       name="username"
       placeholder="User name"
       aria-label="User name"
-      ng-model="user.username"
+      [(ngModel)]="user.username"
     />
     <input
       class="form-control mr-2"
@@ -50,16 +57,19 @@
       placeholder="Password"
       aria-label="Password"
       name="password"
-      ng-model="user.password"
+      [(ngModel)]="user.password"
     />
-    <button class="btn btn-primary" type="submit" ng-click="login()">
-      Login
-    </button>
+    <input
+      class="btn btn-primary m-2"
+      type="submit"
+      value="Login"
+      [disabled]="!isUserValid()"
+    />
   </form>
 
   <!-- If user is authenticated -->
-  <span class="navbar-text" ng-if="isAuthenticated()"
-    >Welcome
-    <button class="btn btn-danger" ng-click="logout()">Logout</button>
+  <span class="navbar-text" *ngIf="authService.isAuthenticated()"
+    >Welcome {{ loggedInUser }}
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
   </span>
 </nav>

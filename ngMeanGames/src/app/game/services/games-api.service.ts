@@ -11,19 +11,28 @@ export class GamesApiService {
   constructor(private apiService: ApiService<Game>) { }
 
   getAll(): Promise<Game[]> {
-    return  this.apiService.getAll(this.GAME_API_URL)
+    return  this.apiService.get(this.GAME_API_URL)
+    .toPromise()
+    .then(res => <Game[]>res);
   }
 
   create(game: Game): Promise<Game> {
-    return  this.apiService.create(this.GAME_API_URL, game)
+    return  this.apiService
+    .post(this.GAME_API_URL, game)
+    .toPromise()
+    .then(res => <Game>res);
   }
 
   getOneById(gameId: string): Promise<Game> {
-    return this.apiService.getOneById(this.GAME_API_URL, gameId);
+    return this.apiService.get(`${this.GAME_API_URL}/${gameId}`)
+    .toPromise()
+    .then(res => <Game> res);
   }
 
   removeOneById(gameId: string): Promise<any> {
-    return this.apiService.removeOneById(this.GAME_API_URL, gameId)
+    return this.apiService.delete(this.GAME_API_URL, gameId)
+    .toPromise()
+    .then(res => res);
   }
 
 }
